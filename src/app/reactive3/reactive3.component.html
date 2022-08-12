@@ -1,0 +1,53 @@
+<div class="container" >
+    <h2>{{ title }}</h2>
+    <br/>
+<form [formGroup]="step3Form" class="form-group" (ngSubmit)="step3()">
+    <label for="nick">Nick Name :</label>
+    <input id="nick" class="form-control" type="text" placeholder="nick name" formControlName="nickname" />
+    <br />
+    <br />
+    <label for="quote">Tell us one of your favourite quote : </label>
+    <input id="quote" type="text" class="form-control" placeholder="We are listening..." formControlName="quote" />
+    <br />
+    <br />
+    <label for="marvelDc">So you are a fan of... </label><span
+    *ngIf="marvelDc?.hasValidator" style="color: red;"> *</span> : <br/>
+    <label>
+    <input formControlName="marvelDc" class="form-check-input"  name="marvelDc" type="radio" id="marvelDc" value="Marvel"><span> Marvel </span></label><br/>
+    <label>
+    <input formControlName="marvelDc" class="form-check-input" type="radio" name="marvelDc" value="DC"><span> DC </span></label><br/>
+    <label>
+    <input formControlName="marvelDc" class="form-check-input" type="radio" name="marvelDc" value="Neither"><span> Neither </span></label><br/>
+    <br />
+    <br />
+    <label for="question">What is the capital of India ? </label><span
+    *ngIf="question?.hasValidator" style="color: red;"> *</span> :
+    <input id="question" type="text" class="form-control" placeholder="?" formControlName="question" />
+    <br />
+    <div *ngIf="question?.errors?.['invalid'] && question?.touched " style="color: red;">
+        Answer correctly to continue with the form...
+    </div>
+    <br />
+    <label for="luckyNum">What's your lucky number : </label>
+    <input id="luckyNum" type="text" maxlength="1" class="form-control" placeholder="between 0 to 9" formControlName="luckyNum" />
+    <br />
+    <div *ngIf="luckyNum?.errors?.['pattern']" style="color: red;">
+        Invalid entry
+    </div>
+    <br />
+    <label for="email">Your email id </label><span
+    *ngIf="email?.hasValidator" style="color: red;"> *</span> : 
+    <input id="email" type="email" class="form-control" placeholder="...@gmail.com" formControlName="email" />
+    <div *ngIf="email?.errors?.['pattern']"  style="color: red;">
+        Invalid entry
+    </div>
+    <br />
+    <br />
+    <br />
+    <button type="button" routerLink="/step2" (click)="step3()">Prev</button>
+    <button [disabled]="!step3Form.valid" >Save</button>
+    <button type="button" routerLink="/preview" [disabled]="!step3Form.valid" (click)="step3()" >Submit</button>
+    <!-- <button type="button" mat-raised-button color="primary" routerLink="/step2" (click)="step3()">Prev</button>
+    <button type="button" mat-raised-button color="primary" routerLink="/preview" [disabled]="!step3Form.valid" (click)="step3()" >Submit</button> -->
+</form>
+</div>

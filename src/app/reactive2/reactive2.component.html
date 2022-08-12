@@ -1,0 +1,56 @@
+<div class="container">
+    <h2>{{ title }}</h2>
+    <br />
+    <form [formGroup]="step2Form" class="form-group" (ngSubmit)="step2()">
+        <label for="aadhaar">Aadhaar No. </label><span *ngIf="aadhaar?.hasValidator" style="color: red;"> *</span> :
+        <input id="aadhaar" maxlength="12" class="form-control" type="text" placeholder="aadhaar name" formControlName="aadhaar" />
+        <br />
+        <div *ngIf="aadhaar?.errors?.['pattern'] " style="color: red;">
+            Aadhaar No. not valid.
+        </div>
+        <br />
+        <label for="urself">Tell us about Yourself </label><span *ngIf="urself?.hasValidator" style="color: red;">
+            *</span> :
+        <textarea class="form-control" id="urself" style="resize: none;" rows="7" cols="100" formControlName="urself"
+            placeholder="Enter content.."></textarea>
+        <br />
+        <br />
+        <label for="dark">How much do you fear darkness ? </label>
+        <select id="dark" class="form-control" formControlName="dark">
+            <option value="" disabled selected hidden>Do you fear...</option>
+            <option value="Not at all">Not at all</option>
+            <option value="A little">A little</option>
+            <option value="Extreme">Extreme</option>
+        </select>
+        <br />
+        <br />
+        <label for="hobby"> Hobby : </label>
+        <input id="hobby" type="text" class="form-control" placeholder="Tell us one of your hobbies..."
+            formControlName="hobby" />
+        <br />
+        <br />
+        <label for="language">Languages known </label><span *ngIf="language?.hasValidator" style="color: red;"> *</span>
+        : <br />
+        <input formControlName="language0" class="form-check-input" type="checkbox" value="Tamil" /> Tamil <br />
+        <input formControlName="language1" class="form-check-input" type="checkbox" value="English" /> English <br />
+        <input formControlName="language2" class="form-check-input" type="checkbox" value="HIndi" /> Hindi
+        <!-- <section class="section">
+        <p>
+            <mat-checkbox  formControlName="language0">Tamil</mat-checkbox>
+        </p>
+        <p>
+            <mat-checkbox formControlName="language1">English</mat-checkbox>
+        </p>
+        <p>
+            <mat-checkbox formControlName="language2">Hindi</mat-checkbox>
+        </p> </section> <br /> -->
+        <br />
+        <br />
+        <button type="button" (click)="step2()"  routerLink="/step1">Prev</button>
+        <button [disabled]="!step2Form.valid">Save</button>
+        <button type="button" (click)="step2()" [disabled]="!step2Form.valid" routerLink="/step3">Next</button>
+        <!-- <button type="button" mat-raised-button color="primary" (click)="step2()" routerLink="/step1">Prev</button>
+        <button type="button" mat-raised-button color="primary" (click)="step2()" [disabled]="!step2Form.valid"
+            routerLink="/step3">Save & Next</button> -->
+    </form>
+</div>

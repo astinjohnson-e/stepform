@@ -1,0 +1,68 @@
+<div class="container" >
+    <h2>{{ title }}</h2>
+    <br/>
+<form [formGroup]="step1Form" class="form-group" (ngSubmit)="step1()">
+    <label for="first">First Name </label><span
+    *ngIf="firstname?.hasValidator" style="color: red;"> *</span> : 
+    <input id="first" class="form-control" type="text" placeholder="First name" formControlName="firstname" />
+    <br />
+    <div *ngIf="firstname?.errors?.['pattern'] " style="color: red;">
+        First Name not valid.
+    </div>
+    <br />
+    <label for="middle">Middle Name : </label>
+    <input id="middle" type="text" class="form-control" placeholder="Middle name" formControlName="middlename" />
+    <br />
+    <div *ngIf="middlename?.errors?.['pattern'] " style="color: red;">
+        Middle Name not valid.
+    </div>
+    <br />
+    <label for="last">Last Name </label><span
+    *ngIf="lastname?.hasValidator" style="color: red;"> *</span> :
+    <input id="last" type="text" class="form-control" placeholder="Last name" formControlName="lastname" />
+    <br />
+    <div *ngIf="lastname?.errors?.['pattern'] " style="color: red;">
+        Last Name not valid.
+    </div>
+    <br />
+    <label for="age">Age </label><span
+    *ngIf="age?.hasValidator" style="color: red;"> *</span> :
+    <input id="age" maxlength="2" type="text" class="form-control" placeholder="Age from 10 to 99 are only allowed to fill this form..." formControlName="age" />
+    <br />
+    <div *ngIf="age?.errors?.['pattern'] " style="color: red;">
+        Invalid entry
+    </div>
+    <br />
+    <label for="gender">Gender </label><span *ngIf="gender?.hasValidator" style="color: red;"> *</span> : <br/>
+    <label>
+    <input formControlName="gender" class="form-check-input"  name="gender" type="radio" id="gender" value="male"><span> Male </span></label>
+    <label>
+    <input formControlName="gender" class="form-check-input" type="radio" name="gender" value="female"><span> Female </span></label>
+    <label>
+    <input formControlName="gender" class="form-check-input" type="radio" name="gender" value="others"><span>Others </span></label>
+    <br />
+    <br />
+    <label for="nation">Nationality :  </label>
+    <select id="nation" class="form-control" formControlName="nation">
+        <option value="India">India</option>
+        <option value="USA">USA</option>
+        <option value="others">Others</option>
+    </select>
+    <br />
+    <br />
+    <label for="marital">Marital Status : </label> <br/>
+    <label>
+    <input formControlName="marital" class="form-check-input" name="marital" type="radio" id="Marital" value="Married"><span> Married </span></label>
+    <label>
+    <input  formControlName="marital" class="form-check-input" type="radio" name="marital" value="Single"><span> Single </span></label>
+    <label>
+    <input  formControlName="marital" class="form-check-input" type="radio" name="marital" value="Complicated"><span> Complicated </span></label>
+    <br />
+    <br />
+    <br />
+    <button disabled >Prev</button>
+    <button [disabled]="!step1Form.valid">Save</button>
+    <button [disabled]="!step1Form.valid" type="button" routerLink="/step2" (click)="step1()">Next</button>
+    <!-- <button [disabled]="!step1Form.valid" mat-raised-button color="primary" type="button" routerLink="/step2" (click)="step1()">Save & Next</button> -->
+</form>
+</div>
